@@ -47,4 +47,9 @@ class StringTests {
                 .allSatisfy((e) -> assertThat(e).isEmpty());
     }
 
+    @Test
+    void valueOf() {
+        assertThat(String.valueOf((String) null)).isEqualTo("null");
+    }
+
 }
