@@ -57,4 +57,9 @@ class StringTests {
         assertThat("\u0026").isEqualTo("&");
     }
 
+    @Test
+    void replaceAll() {
+        assertThat("aaa_bbb111-ccc222 ddd_eee333-fff444".replaceAll("([a-z]+_[a-z0-9]{6})-[a-z0-9]{6}", "$1")).isEqualTo("aaa_bbb111 ddd_eee333");
+    }
+
 }
