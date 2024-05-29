@@ -52,4 +52,9 @@ class StringTests {
         assertThat(String.valueOf((String) null)).isEqualTo("null");
     }
 
+    @Test
+    void unicodeEscapeSequence() {
+        assertThat("\u0026").isEqualTo("&");
+    }
+
 }
