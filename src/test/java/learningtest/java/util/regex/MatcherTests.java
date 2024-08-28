@@ -38,6 +38,13 @@ class MatcherTests {
         variables.forEach(System.out::println);
     }
 
+    @Test
+    void matches() {
+        Pattern pattern = Pattern.compile("[a-z]+");
+        assertThat(pattern.matcher("abc").matches()).isTrue();
+        assertThat(pattern.matcher("abc!").matches()).isFalse();
+    }
+
     private static Set<String> getAllThymeleafVariables(String path) throws IOException {
         Set<String> variables = new TreeSet<>();
         String string = Files.readString(new File(path).toPath());
