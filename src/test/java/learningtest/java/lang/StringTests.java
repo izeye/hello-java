@@ -48,6 +48,16 @@ class StringTests {
     }
 
     @Test
+    void splitWithTab() {
+        String string = "1\t2\t3";
+
+        assertThat(string.split("\t")).containsExactly("1", "2", "3");
+        assertThat(string.split("\\t")).containsExactly("1", "2", "3");
+        assertThat(string.split("\\\t")).containsExactly("1", "2", "3");
+        assertThat(string.split("\\\\t")).containsExactly(string);
+    }
+
+    @Test
     void valueOf() {
         assertThat(String.valueOf((String) null)).isEqualTo("null");
     }
