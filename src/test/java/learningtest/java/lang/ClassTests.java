@@ -3,6 +3,8 @@ package learningtest.java.lang;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,6 +43,13 @@ class ClassTests {
     @Test
     void getDeclaredMethods() {
         assertThat(Arrays.stream(Child.class.getDeclaredMethods()).map((method) -> method.getName())).containsExactly("getAlias");
+    }
+
+    @Test
+    void isAssignableFrom() {
+        assertThat(Map.class.isAssignableFrom(HashMap.class)).isTrue();
+        assertThat(Map.class.isAssignableFrom(Map.class)).isTrue();
+        assertThat(HashMap.class.isAssignableFrom(Map.class)).isFalse();
     }
 
     static class SomeClass {
