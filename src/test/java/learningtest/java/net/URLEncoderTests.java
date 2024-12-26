@@ -18,6 +18,7 @@ class URLEncoderTests {
     void encode() {
         assertThat(URLEncoder.encode(" ", StandardCharsets.UTF_8)).isEqualTo("+");
         assertThat(URLEncoder.encode("+", StandardCharsets.UTF_8)).isEqualTo("%2B");
+        assertThat(URLEncoder.encode("|", StandardCharsets.UTF_8)).isEqualTo("%7C");
     }
 
 }
