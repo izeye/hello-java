@@ -19,3 +19,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+wrapper {
+    gradleVersion = '8.13'
+}
