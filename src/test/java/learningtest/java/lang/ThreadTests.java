@@ -1,6 +1,10 @@
 package learningtest.java.lang;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -56,6 +60,23 @@ class ThreadTests {
         Thread thread = Thread.ofPlatform().start(() -> printThreadInfo(Thread.currentThread()));
         assertThat(thread).isExactlyInstanceOf(Thread.class);
         thread.join();
+    }
+
+    @Disabled("OutOfMemoryError is thrown.")
+    @Test
+    void tooManyThreads() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        while (true) {
+            new Thread(() -> {
+                try {
+                    latch.await();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+            System.out.println("Thread.activeCount(): " + Thread.activeCount());
+            TimeUnit.MILLISECONDS.sleep(1);
+        }
     }
 
     private void printThreadInfo(Thread thread) {
